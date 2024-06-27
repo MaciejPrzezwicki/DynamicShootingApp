@@ -1,11 +1,12 @@
 package com.MaciejPrzezwicki.DynamicShootingApp.model;
 
 import com.MaciejPrzezwicki.DynamicShootingApp.validation.LicenseNumber;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -14,13 +15,17 @@ import javax.validation.constraints.Pattern;
 @Builder
 @ToString
 public class UserDTO {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     @NotBlank(message = "name field can't be blank")
     private String name;
     @NotBlank(message = "surname field can't be blank")
     private String surname;
     @LicenseNumber (message = "License number must contains only 12 digits")
-    private int licenseNumber;
+    private String licenseNumber;
+    @NotBlank
     private String emailAddress;
+    @NotBlank
     private String role;
 }
