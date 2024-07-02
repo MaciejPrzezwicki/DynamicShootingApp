@@ -1,14 +1,14 @@
 package com.MaciejPrzezwicki.DynamicShootingApp.model;
 
+import com.MaciejPrzezwicki.DynamicShootingApp.validation.LicenseNumber;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Entity
 @Table(name = "competitors")

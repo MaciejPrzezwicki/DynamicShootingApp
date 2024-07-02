@@ -1,11 +1,12 @@
 package com.MaciejPrzezwicki.DynamicShootingApp.controller;
 
+import com.MaciejPrzezwicki.DynamicShootingApp.exception.ResourceNotFoundException;
 import com.MaciejPrzezwicki.DynamicShootingApp.model.User;
 import com.MaciejPrzezwicki.DynamicShootingApp.model.UserDTO;
 import com.MaciejPrzezwicki.DynamicShootingApp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,16 +18,16 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/createCompetitor")
-    public UserDTO createUser(@RequestBody UserDTO userDTO){
+    public UserDTO createUser(@Valid @RequestBody UserDTO userDTO){
         return asDto(
-        userService.addUser(userDTO.getName(), userDTO.getSurname(), userDTO.getLicenseNumber(), userDTO.getEmailAddress(), userDTO.getRole())
-        );
+        userService.addUser(userDTO.getName(), userDTO.getSurname(), userDTO.getLicenseNumber(), userDTO.getEmailAddress(), userDTO.getRole()));
     }
 
     @GetMapping("/competitors")
-    public List<UserDTO> getUsers(){
-        return userService.getUsers().stream().map(this::asDto).collect(Collectors.toList());
+    public List<UserDTO> findUser (@RequestParam(value = "sortBy", required = false) String sortBy) {
+        return userService.findUser(sortBy).stream().map(this::asDto).collect(Collectors.toList());
     }
+
 
 
 

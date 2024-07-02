@@ -4,9 +4,8 @@ import com.MaciejPrzezwicki.DynamicShootingApp.validation.LicenseNumber;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-
-import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
